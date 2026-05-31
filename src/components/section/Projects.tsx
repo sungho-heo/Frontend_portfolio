@@ -101,6 +101,36 @@ const projectList: ProjectsProps[] = [
       "/images/portfolio/portfolio6.png",
     ],
   },
+  {
+    id: 4,
+    title: "doc-summary",
+    period: "2026.05 (5인 프로젝트)",
+    url: "",
+    detailTitle: "문서를 업로드하면 AI가 자동으로 요약해주는 웹 서비스",
+    summary: [
+      "더다올디앤씨 인턴십 3기 미니 프로젝트로 진행",
+      "PDF, HWP, DOCX 등 다양한 문서 파일을 업로드하여 AI 요약 요청",
+      "요약된 파일을 카테고리 필터 및 파일명 검색으로 조회",
+      "React Query를 활용한 서버 상태 관리 및 불필요한 API 요청 최소화",
+      "로그인/회원가입 인증 처리 및 Protected Route 구현",
+    ],
+    why: [
+      "인턴십 팀 프로젝트로, 문서 요약 작업을 반복적으로 수행하는 사용자들의 불편함을 해소하고자 기획하게 되었습니다. 파일을 업로드하기만 하면 AI가 자동으로 핵심 내용을 정리해주는 서비스를 목표로 개발했습니다.",
+    ],
+    meaning: [
+      "화면 정의서를 직접 작성하며 UI 기획 단계부터 개발까지 전 과정을 경험했고, 와이어프레임과 실제 구현 화면을 비교하며 기획 의도를 코드로 옮기는 과정에서 협업의 중요성을 체감했습니다.",
+      "파일 업로드 후 요약 완료까지 여러 상태(업로드 중 / 요약 대기 / 요약 중 / 요약 완료)를 관리해야 했는데, Redux와 React Query를 함께 활용해 서버 상태와 클라이언트 상태를 명확히 분리하여 처리하는 방법을 익혔습니다.",
+      "파일 확장자 불일치, 용량 초과, 최대 개수 초과, 요약 실패 등 다양한 예외 상황을 처리하면서 사용자 경험을 위한 에러 핸들링의 중요성을 알게 되었습니다.",
+    ],
+    tech: "TypeScript, React, Redux, React Query, Axios, Tailwind CSS",
+    images: [
+      "/images/doc-summary/doc-summary1.png",
+      "/images/doc-summary/doc-summary2.png",
+      "/images/doc-summary/doc-summary3.png",
+      "/images/doc-summary/doc-summary4.png",
+      "/images/doc-summary/doc-summary5.png",
+    ],
+  },
 ];
 
 export const Projects = () => {
