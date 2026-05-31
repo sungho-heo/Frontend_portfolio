@@ -10,7 +10,7 @@ type ReadmeModalProps = {
     summary: string[];
     url: string;
     why: string[];
-    tech: string;
+    tech: string | { front: string; back: string };
     meaning: string[];
   };
   onClose: () => void;
@@ -86,7 +86,15 @@ export const ReadmeModalContent = ({ project, onClose }: ReadmeModalProps) => {
             Tech Stack
           </h2>
         </div>
-        <p dir="auto">{project.tech}</p>
+        {typeof project.tech === "string" ? (
+          <p dir="auto">{project.tech}</p>
+        ) : (
+          <div>
+            <span dir="auto">Front: {project.tech.front}</span>
+            <br />
+            <span dir="auto">Back: {project.tech.back}</span>
+          </div>
+        )}
         <div className={styles.Mardown_header} dir="auto">
           <h2 className={styles["MarkDown_header-text"]} dir="auto">
             Setup & Start

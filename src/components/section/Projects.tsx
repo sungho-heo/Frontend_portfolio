@@ -14,7 +14,7 @@ type ProjectsProps = {
   summary: string[];
   url: string;
   why: string[];
-  tech: string;
+  tech: string | { front: string; back: string };
   meaning: string[];
   images: string[];
 };
@@ -122,7 +122,10 @@ const projectList: ProjectsProps[] = [
       "파일 업로드 후 요약 완료까지 여러 상태(업로드 중 / 요약 대기 / 요약 중 / 요약 완료)를 관리해야 했는데, Redux와 React Query를 함께 활용해 서버 상태와 클라이언트 상태를 명확히 분리하여 처리하는 방법을 익혔습니다.",
       "파일 확장자 불일치, 용량 초과, 최대 개수 초과, 요약 실패 등 다양한 예외 상황을 처리하면서 사용자 경험을 위한 에러 핸들링의 중요성을 알게 되었습니다.",
     ],
-    tech: "TypeScript, React, Redux, React Query, Axios, Tailwind CSS",
+    tech: {
+      front: "TypeScript, React, Redux, React Query, Axios, Tailwind CSS",
+      back: "FastAPI, JWT, LangChain, PaddleOCR, PostgreSQL, SQLAlchemy ORM",
+    },
     images: [
       "/images/doc-summary/doc-summary1.png",
       "/images/doc-summary/doc-summary2.png",
@@ -184,7 +187,15 @@ export const Projects = () => {
                   </a>
                 </div>
                 <div className={styles["ProjectDetails_tech-stack"]}>
-                  {project.tech}
+                  {typeof project.tech === "string" ? (
+                    project.tech
+                  ) : (
+                    <div>
+                      <span>Front: {project.tech.front}</span>
+                      <br />
+                      <span>Back: {project.tech.back}</span>
+                    </div>
+                  )}
                 </div>
                 <div className={styles["ProjectDetails_button-container"]}>
                   <button
