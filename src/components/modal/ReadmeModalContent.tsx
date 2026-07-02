@@ -2,17 +2,10 @@ import { IoMdClose } from "react-icons/io";
 import { FaReadme } from "react-icons/fa6";
 import styles from "../../scss/section/Projects.module.scss";
 import modalStyles from "../../scss/modal/Modal.module.scss";
+import type { ProjectsProps } from "../section/Projects";
 
 type ReadmeModalProps = {
-  project: {
-    title: string;
-    period: string;
-    summary: string[];
-    url: string;
-    why: string[];
-    tech: string | { front: string; back: string };
-    meaning: string[];
-  };
+  project: ProjectsProps;
   onClose: () => void;
 };
 
@@ -100,16 +93,12 @@ export const ReadmeModalContent = ({ project, onClose }: ReadmeModalProps) => {
             Setup & Start
           </h2>
         </div>
-        <div className={styles.MarkDown_setup}>
-          <pre>
-            <code>
-              {`# Install Javascript Packages
-npm install
-
-# Run Server
-npm run dev`}
-            </code>
-          </pre>
+        <div>
+          <div className={styles.MarkDown_setup}>
+            <pre>
+              <code>{project.setup && project.setup.join("\n")}</code>
+            </pre>
+          </div>
         </div>
       </div>
     </>

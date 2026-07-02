@@ -6,7 +6,7 @@ import globalStyles from "../../scss/styles.module.scss";
 import styles from "../../scss/section/Projects.module.scss";
 
 // Project type
-type ProjectsProps = {
+export type ProjectsProps = {
   id: number;
   title: string;
   period: string;
@@ -14,15 +14,69 @@ type ProjectsProps = {
   summary: string[];
   url: string;
   why: string[];
-  tech: string | { front: string; back: string };
+  tech:
+    | string
+    | {
+        front: string;
+        back?: string;
+        ai?: string;
+      };
   meaning: string[];
   images: string[];
+  setup?: string[];
 };
 
 // projects 내용
 const projectList: ProjectsProps[] = [
   {
     id: 1,
+    title: "법률챗봇",
+    period: "2026.05.28~2026.06.29 (4인 프로젝트)",
+    url: "",
+    detailTitle:
+      "법률 문서를 기반으로 정확한 답변을 제공하는 AI 법률 상담 챗봇",
+    summary: [
+      "약 74,000건 규모의 법률 문서 데이터를 구축하여 RAG 기반 검색 시스템 구현",
+      "사용자가 업로드한 PDF, HWP, DOCX 문서에 대해 OCR 및 AI 요약 기능 제공",
+      "Pinecone Vector DB를 활용한 Dense + Sparse Hybrid Search 환경 구축",
+      "법률 문서 조항 구조를 고려한 Chunking 전략 설계 및 검색 품질 개선",
+      "FastAPI 기반 API 서버 및 PostgreSQL 기반 메타데이터 관리 시스템 구축",
+      "JWT 기반 사용자 인증 및 문서 이력 관리 기능 구현",
+    ],
+    why: [
+      "법률 문서는 전문 용어와 방대한 분량으로 인해 필요한 정보를 찾기 어렵다는 문제를 해결하고자 프로젝트를 기획하였습니다. 사용자가 법률 문서를 업로드하거나 질문을 입력하면 AI가 관련 법률 정보를 검색하고 이해하기 쉬운 형태로 제공하는 서비스를 목표로 개발하였습니다.",
+    ],
+    meaning: [
+      "데이터셋 구축부터 OCR 처리, 벡터화, 검색, 응답 생성까지 AI 서비스의 End-to-End 파이프라인을 설계하고 구현하는 경험을 쌓았습니다.",
+      "법률 문서 특성상 문맥 보존이 중요하다고 판단하여 조항 단위 Chunking 전략을 설계하였고, 이를 통해 검색 결과의 관련성과 응답 품질을 개선할 수 있었습니다.",
+      "약 74,000건 규모의 청크 데이터를 PostgreSQL과 Pinecone에 각각 저장하며 RDB와 Vector DB의 역할 분리 및 데이터 관리 구조를 설계하였습니다.",
+      "OCR 처리 시간과 응답 지연 문제를 개선하여 평균 응답 시간을 약 3분에서 1~2분 수준으로 단축하였으며, HWP 문서 처리 시간 역시 약 1분 수준까지 최적화하였습니다.",
+      "요구사항 정의서 작성, ERD 설계, 로직 문서화 및 단위 테스트를 수행하며 개발뿐 아니라 프로젝트 문서화와 협업 프로세스의 중요성을 경험하였습니다.",
+    ],
+    tech: {
+      front: "React, TypeScript, vite, Radix UI, Tailwind CSS, Zustand",
+      back: "FastAPI, LangChain, PaddleOCR, PostgreSQL, SQLAlchemy, Pinecone, JWT,Docker,WebSocket",
+      ai: "BGE-M3, Hybrid Search, RAG, Ollama",
+    },
+    images: [
+      "/images/legal-chatbot/legal-chatbot1.png",
+      "/images/legal-chatbot/legal-chatbot2.png",
+      "/images/legal-chatbot/legal-chatbot3.png",
+      "/images/legal-chatbot/legal-chatbot4.png",
+      "/images/legal-chatbot/legal-chatbot5.png",
+    ],
+    setup: [
+      "",
+      "# FastAPI",
+      "uvicorn app.main:app --reload",
+      "",
+      "# Frontend",
+      "npm install",
+      "npm run dev",
+    ],
+  },
+  {
+    id: 2,
     title: "doc-summary",
     period: "2026.05 (5인 프로젝트)",
     url: "",
@@ -45,6 +99,7 @@ const projectList: ProjectsProps[] = [
     tech: {
       front: "TypeScript, React, Redux, React Query, Axios, Tailwind CSS",
       back: "FastAPI, JWT, LangChain, PaddleOCR, PostgreSQL, SQLAlchemy ORM",
+      ai: "Ollama",
     },
     images: [
       "/images/doc-summary/doc-summary1.png",
@@ -53,12 +108,21 @@ const projectList: ProjectsProps[] = [
       "/images/doc-summary/doc-summary4.png",
       "/images/doc-summary/doc-summary5.png",
     ],
+    setup: [
+      "",
+      "# FastAPI",
+      "uvicorn app.main:app --reload",
+      "",
+      "# Frontend",
+      "npm install",
+      "npm run dev",
+    ],
   },
   {
-    id: 2,
+    id: 3,
     title: "포트폴리오 웹사이트",
     period: "2025.10 (1인 프로젝트)",
-    url: "",
+    url: "https://frontend-portfolio-wheat-nine.vercel.app/",
     detailTitle: "포트폴리오 사이트",
     summary: [
       "저만의 포트폴리오 제작을위해서 개발",
@@ -70,7 +134,7 @@ const projectList: ProjectsProps[] = [
     meaning: [
       "포트폴리오는 저 자자신을 짧은 시간에 보여줘야하기에 한눈에 보기좋고 많이 화려하지않고 깔끔한 디자인이 중요하다고 생각해서, 많은 레퍼런스를 통해서 한눈에 보기좋은 UI/UX를 개발하는 과정에서 디자인 역량도 기르게되었습니다.",
     ],
-    tech: "TypeScript, React, Sass, vercel",
+    tech: { front: "TypeScript, React, Sass, vercel" },
     images: [
       "/images/portfolio/portfolio1.png",
       "/images/portfolio/portfolio2.png",
@@ -79,9 +143,16 @@ const projectList: ProjectsProps[] = [
       "/images/portfolio/portfolio5.png",
       "/images/portfolio/portfolio6.png",
     ],
+    setup: [
+      "# Install Javascript Packages",
+      "npm install",
+      "",
+      "# Run Server",
+      "npm run dev",
+    ],
   },
   {
-    id: 3,
+    id: 4,
     title: "날씨에 따라 옷차림 추천",
     period: "2024.09.01~2024.12.21",
     url: "https://sungho-heo.github.io/weather_tuto",
@@ -99,15 +170,24 @@ const projectList: ProjectsProps[] = [
       "날씨 웹사이트들중 많이 사용하는 네이버나 핸드폰의 기본 날씨어플의 UI를 참고하니 어떻게 해야 사용자에게 데이터를 쉽고 보기 좋은지 좀더 알게된듯합니다.",
       "시간대별 날씨를 보여주기위해 카드식 구성을 사용하게되었습니다. 처음에 세로 스크롤로 밑으로 내리면서 구현을 했으나, 해당 웹의 특성을 죽이기에 가로스크롤로 구현을하게되었습니다.",
     ],
-    tech: "TypeScript, React, styled-css,github, Redux",
+    tech: {
+      front: "TypeScript, React, styled-css, Redux",
+    },
     images: [
       "/images/weather/weather1.png",
       "/images/weather/weather2.png",
       "/images/weather/weather3.png",
     ],
+    setup: [
+      "# Install Javascript Packages",
+      "npm install",
+      "",
+      "# Run Server",
+      "npm run dev",
+    ],
   },
   {
-    id: 4,
+    id: 5,
     title: "1세대 포켓몬 도감",
     period: "2024.05.20~2024.09.24 (1인 프로젝트)",
     url: "https://sungho-heo.github.io/poke2_front",
@@ -126,12 +206,22 @@ const projectList: ProjectsProps[] = [
       "공식 api에서 가져오는 이미지 로딩속도로 인해서 전체적인 사이트의 속도가 느려지는 현상이 발생했었는데, 가져오는 포켓몬들의 이미지를 저용량 webp확장자로 변환후 적용을 하였고 해당 결과로 이미지 로딩속도가 2배이상 빨라졌습니다.",
       "프론트와 백엔드 데이터를 주고반는 과정이 있었는데 데이터가 넘어오는 것은 확인이 되나 화면에 해당 값이 보이지 않는 현상이 있었는데 백엔드에서 온 데이터값을 프론트에서 잘못된 키값을 사용하여 발생한 문제를 해결함으로써 데이터의 유무도 중요하지만 데이터의 구조와 해당 키값을 명확히 확인하는 점을 알게되었습니다.",
     ],
-    tech: "TypeScript, React, styled-css, Mongodb",
+    tech: {
+      front: "TypeScript, React, styled-css",
+      back: "Mongodb",
+    },
     images: [
       "/images/poke/poke1.png",
       "/images/poke/poke2.png",
       "/images/poke/poke3.png",
       "/images/poke/poke4.png",
+    ],
+    setup: [
+      "# Install Javascript Packages",
+      "npm install",
+      "",
+      "# Run Server",
+      "npm run dev",
     ],
   },
 ];
@@ -191,9 +281,13 @@ export const Projects = () => {
                     project.tech
                   ) : (
                     <div>
-                      <span>Front: {project.tech.front}</span>
-                      <br />
-                      <span>Back: {project.tech.back}</span>
+                      {project.tech.front && (
+                        <div>Frontend: {project.tech.front}</div>
+                      )}
+                      {project.tech.back && (
+                        <div>Backend: {project.tech.back}</div>
+                      )}
+                      {project.tech.ai && <div>AI: {project.tech.ai}</div>}
                     </div>
                   )}
                 </div>
